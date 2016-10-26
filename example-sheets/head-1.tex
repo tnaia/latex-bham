@@ -1,0 +1,238 @@
+\documentclass[10pt,oneside,extrafontsizes]{memoir}
+
+\OnehalfSpacing
+\usepackage{tikz}
+\usetikzlibrary{calc,arrows}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\usepackage{lmodern}
+
+\usepackage{hyperref}
+\hypersetup
+{
+    pdfauthor={A U Thor},
+    pdfsubject={baking with love},
+    pdftitle={Introduction to cooking, example sheet 3},
+    pdfkeywords={baking, exercises, birmingham}
+}
+
+% Create environments for question, answer and text that belongs to neither
+% e.g.: comments from the example sheet
+\newenvironment{question}{%
+  \par\noindent\hspace*{-1.5\parindent}%
+  \makebox[1.5\parindent][l]{\textbf{\color{red!70!blue}{Q}}}\ignorespaces}{\plainbreak{1}}
+
+\newenvironment{answer}{%
+  \par\noindent\hspace*{-1.5\parindent}%
+  \makebox[1.5\parindent][l]{\textbf{\color{red!70!black}{A}}}\ignorespaces}{\plainbreak{1}}
+\newenvironment{intermezzo}{ %
+  \SingleSpacing\footnotesize\begin{leftbar}\noindent\ignorespaces%
+}{\end{leftbar}}
+\newtheorem{conjecture}{{\footnotesize Conjecture}}
+
+\newcommand{\examplesheetnumber}{}
+\newcommand{\myheaderbannercomment}{sheet\ \#}
+\newcommand{\myheaderbannertext}{}
+
+\newcommand{\myheaderbanner}{{\Large\myheaderbannertext} {\footnotesize(\myheaderbannercomment\examplesheetnumber)}}
+\newcommand{\myname}{\footnotesize Your name goes here}
+\newcommand{\ExamplesHeader}[2]{%
+  \renewcommand{\examplesheetnumber}{#2}%
+  \renewcommand{\myheaderbannertext}{#1}%
+%  {\Large #1}, example sheet \##2.\plainbreak{2}}
+}
+
+\newcommand{\ExamplesHeaderWithComment}[3]{%
+  \renewcommand{\examplesheetnumber}{#3}%
+  \renewcommand{\myheaderbannercomment}{#2}
+  \renewcommand{\myheaderbannertext}{#1}%
+}
+
+\newcommand{\deq}{\ensuremath{\coloneqq}}
+\setlrmarginsandblock{4\parindent}{7cm}{*}
+\setulmarginsandblock{3\parindent}{*}{1}
+\checkandfixthelayout
+
+% figures numbered sequentially
+\counterwithout{figure}{chapter}
+
+\makepagestyle{mypagestyle}
+\makeevenhead{mypagestyle}{\thepage\ \emph{of} \thelastpage\hskip.3cm\vrule\hskip.3cm\myname}{}{\myheaderbanner}
+\makeoddhead{mypagestyle}{\myheaderbanner}{}{%
+  \myname\hskip.3cm\vrule\hskip.3cm\thepage\ \emph{of} \thelastpage}
+\pagestyle{mypagestyle}
+
+\newcommand{\defi}[1]{\emph{#1}}
+
+\newcommand{\eps}{\ensuremath{\varepsilon}}
+\DeclareMathOperator{\Img}{Im}
+\DeclareMathOperator{\Var}{Var}
+\DeclareMathOperator{\degen}{degen}
+\DeclareMathOperator{\length}{length}
+\DeclareMathOperator{\depth}{depth}
+
+% Shortcuts for roman, calligraphic and blabkboard letters in mathmode
+\newcommand{\rma}{\ensuremath{\mathrm{a}}}
+\newcommand{\rmb}{\ensuremath{\mathrm{b}}}
+\newcommand{\rmc}{\ensuremath{\mathrm{c}}}
+\newcommand{\rmd}{\ensuremath{\mathrm{d}}}
+\newcommand{\rme}{\ensuremath{\mathrm{e}}}
+\newcommand{\rmf}{\ensuremath{\mathrm{f}}}
+\newcommand{\rmg}{\ensuremath{\mathrm{g}}}
+\newcommand{\rmh}{\ensuremath{\mathrm{h}}}
+\newcommand{\rmi}{\ensuremath{\mathrm{i}}}
+\newcommand{\rmj}{\ensuremath{\mathrm{j}}}
+\newcommand{\rmk}{\ensuremath{\mathrm{k}}}
+\newcommand{\rml}{\ensuremath{\mathrm{l}}}
+\newcommand{\rmm}{\ensuremath{\mathrm{m}}}
+\newcommand{\rmn}{\ensuremath{\mathrm{n}}}
+\newcommand{\rmo}{\ensuremath{\mathrm{o}}}
+\newcommand{\rmp}{\ensuremath{\mathrm{p}}}
+\newcommand{\rmq}{\ensuremath{\mathrm{q}}}
+\newcommand{\rmr}{\ensuremath{\mathrm{r}}}
+\newcommand{\rms}{\ensuremath{\mathrm{s}}}
+\newcommand{\rmt}{\ensuremath{\mathrm{t}}}
+\newcommand{\rmu}{\ensuremath{\mathrm{u}}}
+\newcommand{\rmv}{\ensuremath{\mathrm{v}}}
+\newcommand{\rmw}{\ensuremath{\mathrm{w}}}
+\newcommand{\rmx}{\ensuremath{\mathrm{x}}}
+\newcommand{\rmy}{\ensuremath{\mathrm{y}}}
+\newcommand{\rmz}{\ensuremath{\mathrm{z}}}
+
+\newcommand{\rmA}{\ensuremath{\mathrm{A}}}
+\newcommand{\rmB}{\ensuremath{\mathrm{B}}}
+\newcommand{\rmC}{\ensuremath{\mathrm{C}}}
+\newcommand{\rmD}{\ensuremath{\mathrm{D}}}
+\newcommand{\rmE}{\ensuremath{\mathrm{E}}}
+\newcommand{\rmF}{\ensuremath{\mathrm{F}}}
+\newcommand{\rmG}{\ensuremath{\mathrm{G}}}
+\newcommand{\rmH}{\ensuremath{\mathrm{H}}}
+\newcommand{\rmI}{\ensuremath{\mathrm{I}}}
+\newcommand{\rmJ}{\ensuremath{\mathrm{J}}}
+\newcommand{\rmK}{\ensuremath{\mathrm{K}}}
+\newcommand{\rmL}{\ensuremath{\mathrm{L}}}
+\newcommand{\rmM}{\ensuremath{\mathrm{M}}}
+\newcommand{\rmN}{\ensuremath{\mathrm{N}}}
+\newcommand{\rmO}{\ensuremath{\mathrm{O}}}
+\newcommand{\rmP}{\ensuremath{\mathrm{P}}}
+\newcommand{\rmQ}{\ensuremath{\mathrm{Q}}}
+\newcommand{\rmR}{\ensuremath{\mathrm{R}}}
+\newcommand{\rmS}{\ensuremath{\mathrm{S}}}
+\newcommand{\rmT}{\ensuremath{\mathrm{T}}}
+\newcommand{\rmU}{\ensuremath{\mathrm{U}}}
+\newcommand{\rmV}{\ensuremath{\mathrm{V}}}
+\newcommand{\rmW}{\ensuremath{\mathrm{W}}}
+\newcommand{\rmX}{\ensuremath{\mathrm{X}}}
+\newcommand{\rmY}{\ensuremath{\mathrm{Y}}}
+\newcommand{\rmZ}{\ensuremath{\mathrm{Z}}}
+
+\newcommand{\bba}{\ensuremath{\mathbb{A}}}
+\newcommand{\bbb}{\ensuremath{\mathbb{B}}}
+\newcommand{\bbc}{\ensuremath{\mathbb{C}}}
+\newcommand{\bbd}{\ensuremath{\mathbb{D}}}
+\newcommand{\bbe}{\ensuremath{\mathbb{E}}}
+\newcommand{\bbf}{\ensuremath{\mathbb{F}}}
+\newcommand{\bbg}{\ensuremath{\mathbb{G}}}
+\newcommand{\bbh}{\ensuremath{\mathbb{H}}}
+\newcommand{\bbi}{\ensuremath{\mathbb{I}}}
+\newcommand{\bbj}{\ensuremath{\mathbb{J}}}
+\newcommand{\bbk}{\ensuremath{\mathbb{K}}}
+\newcommand{\bbl}{\ensuremath{\mathbb{L}}}
+\newcommand{\bbm}{\ensuremath{\mathbb{M}}}
+\newcommand{\bbn}{\ensuremath{\mathbb{N}}}
+\newcommand{\bbo}{\ensuremath{\mathbb{O}}}
+\newcommand{\bbp}{\ensuremath{\mathbb{P}}}
+\newcommand{\bbq}{\ensuremath{\mathbb{Q}}}
+\newcommand{\bbr}{\ensuremath{\mathbb{R}}}
+\newcommand{\bbs}{\ensuremath{\mathbb{S}}}
+\newcommand{\bbt}{\ensuremath{\mathbb{T}}}
+\newcommand{\bbu}{\ensuremath{\mathbb{U}}}
+\newcommand{\bbv}{\ensuremath{\mathbb{V}}}
+\newcommand{\bbw}{\ensuremath{\mathbb{W}}}
+\newcommand{\bbx}{\ensuremath{\mathbb{X}}}
+\newcommand{\bby}{\ensuremath{\mathbb{Y}}}
+\newcommand{\bbz}{\ensuremath{\mathbb{Z}}}
+
+\newcommand{\bfa}{\ensuremath{\mathbf{a}}}
+\newcommand{\bfb}{\ensuremath{\mathbf{b}}}
+\newcommand{\bfc}{\ensuremath{\mathbf{c}}}
+\newcommand{\bfd}{\ensuremath{\mathbf{d}}}
+\newcommand{\bfe}{\ensuremath{\mathbf{e}}}
+\newcommand{\bff}{\ensuremath{\mathbf{f}}}
+\newcommand{\bfg}{\ensuremath{\mathbf{g}}}
+\newcommand{\bfh}{\ensuremath{\mathbf{h}}}
+\newcommand{\bfi}{\ensuremath{\mathbf{i}}}
+\newcommand{\bfj}{\ensuremath{\mathbf{j}}}
+\newcommand{\bfk}{\ensuremath{\mathbf{k}}}
+\newcommand{\bfl}{\ensuremath{\mathbf{l}}}
+\newcommand{\bfm}{\ensuremath{\mathbf{m}}}
+\newcommand{\bfn}{\ensuremath{\mathbf{n}}}
+\newcommand{\bfo}{\ensuremath{\mathbf{o}}}
+\newcommand{\bfp}{\ensuremath{\mathbf{p}}}
+\newcommand{\bfq}{\ensuremath{\mathbf{q}}}
+\newcommand{\bfr}{\ensuremath{\mathbf{r}}}
+\newcommand{\bfs}{\ensuremath{\mathbf{s}}}
+\newcommand{\bft}{\ensuremath{\mathbf{t}}}
+\newcommand{\bfu}{\ensuremath{\mathbf{u}}}
+\newcommand{\bfv}{\ensuremath{\mathbf{v}}}
+\newcommand{\bfw}{\ensuremath{\mathbf{w}}}
+\newcommand{\bfx}{\ensuremath{\mathbf{x}}}
+\newcommand{\bfy}{\ensuremath{\mathbf{y}}}
+\newcommand{\bfz}{\ensuremath{\mathbf{z}}}
+
+\newcommand{\bfA}{\ensuremath{\mathbf{A}}}
+\newcommand{\bfB}{\ensuremath{\mathbf{B}}}
+\newcommand{\bfC}{\ensuremath{\mathbf{C}}}
+\newcommand{\bfD}{\ensuremath{\mathbf{D}}}
+\newcommand{\bfE}{\ensuremath{\mathbf{E}}}
+\newcommand{\bfF}{\ensuremath{\mathbf{F}}}
+\newcommand{\bfG}{\ensuremath{\mathbf{G}}}
+\newcommand{\bfH}{\ensuremath{\mathbf{H}}}
+\newcommand{\bfI}{\ensuremath{\mathbf{I}}}
+\newcommand{\bfJ}{\ensuremath{\mathbf{J}}}
+\newcommand{\bfK}{\ensuremath{\mathbf{K}}}
+\newcommand{\bfL}{\ensuremath{\mathbf{L}}}
+\newcommand{\bfM}{\ensuremath{\mathbf{M}}}
+\newcommand{\bfN}{\ensuremath{\mathbf{N}}}
+\newcommand{\bfO}{\ensuremath{\mathbf{O}}}
+\newcommand{\bfP}{\ensuremath{\mathbf{P}}}
+\newcommand{\bfQ}{\ensuremath{\mathbf{Q}}}
+\newcommand{\bfR}{\ensuremath{\mathbf{R}}}
+\newcommand{\bfS}{\ensuremath{\mathbf{S}}}
+\newcommand{\bfT}{\ensuremath{\mathbf{T}}}
+\newcommand{\bfU}{\ensuremath{\mathbf{U}}}
+\newcommand{\bfV}{\ensuremath{\mathbf{V}}}
+\newcommand{\bfW}{\ensuremath{\mathbf{W}}}
+\newcommand{\bfX}{\ensuremath{\mathbf{X}}}
+\newcommand{\bfY}{\ensuremath{\mathbf{Y}}}
+\newcommand{\bfZ}{\ensuremath{\mathbf{Z}}}
+
+
+\newcommand{\cala}{\ensuremath{\mathcal{A}}}
+\newcommand{\calb}{\ensuremath{\mathcal{B}}}
+\newcommand{\calc}{\ensuremath{\mathcal{C}}}
+\newcommand{\cald}{\ensuremath{\mathcal{D}}}
+\newcommand{\cale}{\ensuremath{\mathcal{E}}}
+\newcommand{\calf}{\ensuremath{\mathcal{F}}}
+\newcommand{\calg}{\ensuremath{\mathcal{G}}}
+\newcommand{\calh}{\ensuremath{\mathcal{H}}}
+\newcommand{\cali}{\ensuremath{\mathcal{I}}}
+\newcommand{\calj}{\ensuremath{\mathcal{J}}}
+\newcommand{\calk}{\ensuremath{\mathcal{K}}}
+\newcommand{\call}{\ensuremath{\mathcal{L}}}
+\newcommand{\calm}{\ensuremath{\mathcal{M}}}
+\newcommand{\caln}{\ensuremath{\mathcal{N}}}
+\newcommand{\calo}{\ensuremath{\mathcal{O}}}
+\newcommand{\calp}{\ensuremath{\mathcal{P}}}
+\newcommand{\calq}{\ensuremath{\mathcal{Q}}}
+\newcommand{\calr}{\ensuremath{\mathcal{R}}}
+\newcommand{\cals}{\ensuremath{\mathcal{S}}}
+\newcommand{\calt}{\ensuremath{\mathcal{T}}}
+\newcommand{\calu}{\ensuremath{\mathcal{U}}}
+\newcommand{\calv}{\ensuremath{\mathcal{V}}}
+\newcommand{\calw}{\ensuremath{\mathcal{W}}}
+\newcommand{\calx}{\ensuremath{\mathcal{X}}}
+\newcommand{\caly}{\ensuremath{\mathcal{Y}}}
+\newcommand{\calz}{\ensuremath{\mathcal{Z}}}

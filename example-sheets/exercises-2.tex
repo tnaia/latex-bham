@@ -1,0 +1,77 @@
+\input{head-1} % Load definitions and macros
+
+\begin{document}
+\ExamplesHeader{4CTa --- Combinatorics}{2}
+
+\noindent Sometimes it is useful to make a few definitions right at the start of the example sheet,
+to help out whoever is going to try follow your reasoning. Clarifying notes tend to be very helpful!
+This example sheet showcases some of the features you may need when typing an example sheet.
+
+For~$a,b\in\bbn$, with~$a\leq b$, we write~$[a,b]$
+for~$\{a,a+1,\ldots,b\}$.
+
+\smallskip
+
+
+\begin{question}
+Let~$k,m\in\bbn$. Prove the following assertions are equivalent:
+\begin{enumerate}[(i)]
+\item Whenever~\bbn\ is $k$-coloured there is a monochromatic arithmetic progression of length~$m$.
+\item There exists an~$n=n(k,m)$ such that whenever~$[n]$ is $k$-coloured
+      there is a monochromatic arithmetic progression of length~$m$.
+\end{enumerate}
+\end{question}
+
+\begin{answer}
+Here goes your beautifully-thought, and now handsomely typeset argument!
+\end{answer}
+
+\begin{intermezzo}
+The next few exercises lead you towards a proof of such-and-such result.
+(Use the intermezzo environment for remarks like these, which sometimes appear between exercises.)
+\end{intermezzo}
+
+\begin{question}
+Given distinct~$x_1,\ldots,x_m\in\bbn$,
+define~$P(x_1,\ldots,x_m)=\{\prod_{i\in I} x_i\colon I\subseteq [m],I\neq \emptyset\}$.
+So~$P(x_1,\ldots,x_m)$ is the set of all products of~$x_i$.
+\begin{enumerate}[(a)]
+\item Determine~$P(2,3,5)$.
+\item Use the finite sums theorem to prove the following.
+For all~$k,m\in\bbn$ there exists an~$n'\in\bbn$ such that
+whenever~$[n]$ is~$k$-coloured there are distinct~$x_1,\ldots,x_m\in[n']$
+such that~$P(x_1,\ldots,x_m)$ is monochromatic.
+[\emph{Hint: Let~$n$ be the number which works in the finite sums theorem.
+Show that taking~$n'=2^n$ works in the statement above.
+Try to find~$x_1,\ldots,x_m$ within the set~$\{2^1,2^2,\ldots,2~n\}$.}]
+\end{enumerate}
+\end{question}
+
+\begin{answer}
+\begin{enumerate}[(a)]
+\item
+  Note that\ldots
+\item
+  Consider\ldots
+\end{enumerate}
+\end{answer}
+
+You may use the macro \cs{defi} to introduce a definition. 
+For instance, a number is \defi{odd} if it is not divisible by~2.
+
+\begin{question}
+Let the~\defi{Schur number} $S(k)$ be the smallest natural number~$n$
+such that every $k$-colouring of~$[n]$ contains
+a~monochromatic solution to~$x+y=z$.
+\begin{enumerate}[(a)]
+\item Prove that~$S(k+1)\geq 3S(k) -1$.
+      [\emph{Hint: Let~$c$ be a $k$-colouring of~$[N]$ such that
+      there is no monochromatic solution to~$x+y=z$. Colour the blocks~$[1,N]$
+      and~$[2N+2,3N+1]$ the same way as~$c$,
+      and colour each number in~$[N+1,2N+1]$ by a new colour.
+      Show that there is no monochromatic solution to~$x+y=z$.}]
+\item Given that~$S(2)=5$, prove that~$S(k)\geq (3^k+1)/2$ for all~$k\geq 2$.
+\end{enumerate}
+\end{question}
+
+\end{document}
