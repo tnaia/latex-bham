@@ -25,7 +25,6 @@
 \renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
 \usepackage[T1]{fontenc}
 
-%\usepackage{type1cm}
 \usepackage{multicol}
 \usepackage[margin=1.5cm]{geometry}
 \let\oldemph\emph
@@ -42,11 +41,7 @@
 
 \colorlet{light}[cmyk]{dark!70!white}
 \definecolor{tournament}{cmyk}{0.91,0,0.68,0.35}
-%0.851, 0, 0.568, 0.425}
-  %0.851, 0, 0.568, 0.51}
-  %0.821, 0.11, 0.481, 0.592}
 \definecolor{mypink}{cmyk}{0, 1, 0.629, 0}
-  %0, 1, 0.752, 0.05}
 \colorlet{very light}[cmyk]{dark!30!white}
 \colorlet{bgcolor}[cmyk]{white}%{brown!10!white}
 \colorlet{red}[cmyk]{red}
@@ -77,44 +72,14 @@
 
 \bigskip
 
-%% \begin{tikzpicture}
-%% \foreach \xx in {0,4.5,...,49.5} {
-%%   \pgfmathsetmacro{\randrotate}{rand*360}
-%%   \begin{scope}[shift={($(\xx cm, 0)$)}]
-%%     %  \draw[light] (0,0) circle  (2cm);
-%%     \foreach \ii in {0,...,4} {
-%%       \pgfmathsetmacro{\ang}{72*\ii +\randrotate}
-%%       \fill[dark] (\ang:\radius cm) circle (3pt);
-%%       \foreach \jj in {1,2} {
-%%         \pgfmathsetmacro{\angtwo}{\ang + 72*\jj)}
-%%         \draw [shorten >=6pt, shorten <=6pt,light] (\ang:\radius cm) -- (\angtwo:\radius cm);
-%%       }
-%%     }
-%%   \end{scope}
-%% }
-%% \end{tikzpicture}
-%% \end{center}
 
 \begin{multicols}{2}%
-%%
-%% \begin{abstract}
-%% For reference: Which patterns occur in every round-robin tournament, if there are no ties?
-%% A classical result in combinatorics states that (no matter the game results)
-%% all players may be lined up so that the first has defeated
-%% the second in their match, the second has defeated the third, and so on.
-%% In other words, this "directed line" pattern is unavoidable.
-%% Interestingly, few such patterns were known, although a conjecture from the 80's 
-%% states that most acyclic structures (oriented trees) are unavoidable.
-%% Using recently-developed tools in Combinatorics, we are able answer this
-%% conjecture, proving that almost all oriented trees are indeed unavoidable.
-%% \end{abstract}
-%%
 \begin{center}
   {\itshape\fontsize{40}{40}\selectfont
     \emph{Directed networks}
   }
   
-%%%%%%  \vspace{-.3cm}{\color{unav}{\rule{10.5cm}{2pt}}}
+
 \end{center}
 
   \medskip
@@ -144,7 +109,7 @@ is a network where each pair of \textcolor{dark}{vertices}
     \coordinate (d) at (0,0)
 ;
 
-    %    \draw[highlight] (a) --(b) -- (d);
+
     \begin{scope}[shorten >=.4cm,shorten <=.4cm,tournament]
       \draw[lin,bend left] (a) to node [right] {\makebox[0pt][l]{\textcolor{light}{\reflectbox{$\rightsquigarrow$} arc}}} (b);
       \draw[lin] (b) -- (d);
@@ -167,10 +132,6 @@ is a network where each pair of \textcolor{dark}{vertices}
 
 \medskip
 
-%% There are many tournaments! \newline
-%% \hspace*{\fill}(Their number is exponential in \nn.)
-
-%% \medskip
 
 Brute-force analysis of tournaments is impractical,
 as the number of tournaments is exponential on \nn.
@@ -188,7 +149,7 @@ The first results in this direction date back to 1934.
 \emph{Unavoidability}
 }
 
-%%%%%%\vspace{-.4cm}{\color{unav}{\rule{10cm}{2pt}}}
+
 \end{center}
 
 \medskip
@@ -213,7 +174,7 @@ if it appears in every tournament
 \bigskip
 
 \emph{Directed cycles} $\Bigl($
-%\diag{triangle, square, \ldots})
+
 \begin{tikzpicture}[baseline={(0,-.5)},mypink]
   \coordinate (a) at (170:.8cm);
   \coordinate (b) at (50:.8cm);
@@ -327,7 +288,7 @@ What about structures without cycles?\newline
 \bigskip
 
 \begin{center}
-%%%%%%  \vspace*{-.4cm}{\color{light}{\rule{49cm}{2pt}}}
+
 
   \vspace{-1.4cm}%
   {\color{light}{\rule{\textwidth}{3pt}}}
@@ -337,37 +298,10 @@ What about structures without cycles?\newline
 
   \begin{tikzpicture}
     \input{5v-alternating-2}
-    %% \foreach \xx in {0,4.5,...,49.5} {
-    %%   \pgfmathsetmacro{\randrotate}{rand*360}
-    %%   \begin{scope}[shift={($(\xx cm, 0)$)}]
-    %%     %  \draw[light] (0,0) circle  (2cm);
-    %%     \foreach \ii in {0,...,4} {
-    %%       \pgfmathsetmacro{\ang}{72*\ii +\randrotate}
-    %%       \fill[dark] (\ang:\radius cm) circle (3pt);
-    %%       \foreach \jj in {1,2} {
-    %%         \pgfmathsetmacro{\angtwo}{\ang + 72*\jj)}
-    %%         \draw [shorten >=6pt, shorten <=6pt,light] (\ang:\radius cm) -- (\angtwo:\radius cm);
-    %%       }
-    %%     }
-    %%   \end{scope}
-    %% }
   \end{tikzpicture}
 
   \smallskip
 
-  %% % Raised Rule Command:
-  %% % Arg 1 (Optional) - how high to raise the rule
-  %% % Arg 2            - Thickness of the rule
-  %% \newcommand{\raisedrule}[2][0em]{\leaders\hbox{\rule[#1]{1pt}{#2}}\hfill\null}
-
-  %% \def\Vrulefill#1#2{
-  %%   \leavevmode%
-  %%   \hskip-.2in%
-  %%   \leaders%
-  %%   \vtop{\hsize=.0025in\vskip#1#2}%
-  %%   \hfill%
-  %%   \hskip.3in%
-  %% }
 
   {\color{light}\rule[.3ex]{32cm}{3pt}} \hfill\Fig The tree pattern
   \begin{tikzpicture}[baseline={(0,0)}]
@@ -403,7 +337,7 @@ What about structures without cycles?\newline
 \emph{Which trees are unavoidable\makebox[0em][l]{?}}
 }
 
-%%%%%%\vspace{-.4cm}{\color{unav}{\rule{17cm}{2pt}}}
+
 \end{center}
 
 \bigskip
@@ -425,7 +359,6 @@ Only two known examples: \emph{paths} ($\nn\geq 8$) and \emph{claws}.
     \draw [lin shorten] (b) -- (a);
     \draw [lin shorten] (b) -- (c);
     \draw [lin shorten] (c) -- (d);
-    %\draw [lin shorten] (e) -- (d);
     \end{scope}
     \node at ($(d) +(0,-.5)$) {$\vdots$};
     
@@ -467,11 +400,6 @@ Only two known examples: \emph{paths} ($\nn\geq 8$) and \emph{claws}.
 
     \foreach \letter in {a,b,d} {
       \draw [lin shorten]  (\letter1) -- (\letter2);
-      %\draw [lin shorten]  (\letter2) -- (\letter3);
-    }
-
-    \foreach \letter in {d} {
-      %\draw [lin shorten]  (\letter3) -- (\letter4);
     }
 
     \foreach \letter in {a2,b2,c1,d2} {
@@ -483,8 +411,6 @@ Only two known examples: \emph{paths} ($\nn\geq 8$) and \emph{claws}.
     }
 
     \draw [gray,thick,decorate,decoration={brace,amplitude=.3cm}] ($(b2-|d)+(0,-1.1cm)$) -- node [black,below=.3cm] {$\displaystyle \leq \left(\frac{3}{8}+\frac{1}{200}\right)\nn$ branches} ($(b2-|a)+(0,-1.1cm)$);
-%    \draw [gray,thick,decorate,decoration={brace,amplitude=.3cm}] ($(d4)+(0,-.8cm)$) -- node[black,below=.3cm,midway] {$\displaystyle\leq \frac{19}{50}n=\frac{3]{8}+\frac{1}{200}$ branches} %
-%    ($(d4-|a)+(0,-.8cm)$);
   \end{tikzpicture}%
 
 \end{center}
@@ -565,18 +491,13 @@ K\"uhn, Mycroft and Osthus\yr{2011} obtained structural characterization of larg
 
 Mycroft, N.\yr{2016$^+$}\,
 
-\hook Most trees admit a good ``prunning''.
+\hook Most trees admit a good ``pruning''.
 
-\hook The prunned tree ``fits'' nicely in any tournament.
+\hook The pruned tree ``fits'' nicely in any tournament.
 (By means of a randomized algorithm, based on
 a sharpened version of the result above.)
 
-\hook We may then recover the prunned ends, to obtain a copy of the complete tree!
-
-
-
-
-%green!40!blue
+\hook We may then recover the pruned ends, to obtain a copy of the complete tree!
 
 
 \medskip
@@ -586,12 +507,10 @@ a sharpened version of the result above.)
 
 \begin{tikzpicture}[remember picture, overlay]
   \clip ($(current page.north east) -(.5,2.5)$) -- +(0,1.5cm) arc (60:300:3.5cm) -- cycle;
-%  \clip ($(current page.north east) -(2cm,2cm)$) rectangle ($(current page.north west) -(.3cm,0cm)$);
   \node[anchor=north east] (tn) at ($(current page.north east) +(.13,0)$) {\ldots me!};
   
 \end{tikzpicture}
 
-%\vspace{.5cm}
 
 
 \begin{minipage}{.6\textwidth}
@@ -607,7 +526,6 @@ T\'assio Naia \textcolor{dark}{\texttt{tnaia@member.fsf.org}}. School of Mathema
 \begin{minipage}{.38\textwidth}
 
 \begin{center}
-%\includegraphics[width=4cm]{pierre}\quad
 \raisebox{-1cm}{\includegraphics[width=5cm]{UoB_logo.jpg}}
 \quad\includegraphics[width=6cm]{logo-vetorizada_portugues.png}
 
