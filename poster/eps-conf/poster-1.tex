@@ -1,0 +1,536 @@
+\documentclass[a1paper,extrafontsizes,32pt]{a0poster}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{lmodern,,microtype,amssymb}
+\usepackage{graphicx}
+\usepackage[cymk]{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,calc,decorations.markings,decorations.pathmorphing,decorations.pathreplacing,arrows}
+\tikzset{lin/.style={line width=5pt,decoration={markings, mark=at position 0.5*\pgfdecoratedpathlength+1.8pt with {\arrow{angle 90}}}, postaction={decorate}}}
+\newcommand{\shortendistance}{10pt}
+\tikzset{lin shorten/.style={shorten >=\shortendistance,shorten <=\shortendistance,line width=5pt,decoration={markings, mark=at position 0.5*\pgfdecoratedpathlength+1.8pt with {\arrow{angle 90}}}, postaction={decorate}}}
+\tikzset{highlight/.style={unav,line width=10pt,line cap=round,line join=round}}
+\tikzset{small highlight/.style={orange!80!white,line width=5pt,line cap=round,line join=round}}
+\tikzset{small lin/.style={line width=2pt,decoration={markings, mark=at position 0.5*\pgfdecoratedpathlength+1.8pt with {\arrow{angle 90}}}, postaction={decorate}}}
+\newcommand{\smallshortendistance}{5pt}
+\tikzset{small lin shorten/.style={shorten >=\smallshortendistance,shorten <=\smallshortendistance,line width=2pt,decoration={markings, mark=at position 0.5*\pgfdecoratedpathlength+2.2pt with {\arrow{angle 90}}}, postaction={decorate}}}
+\newcommand{\vertexat}[1]{%
+  \fill [dark] #1 circle (6pt);}
+
+\usepackage{lmodern}
+
+\renewcommand*\ttdefault{lmvtt}
+\renewcommand*\familydefault{\ttdefault} %% Only if the base font of the document is to be typewriter style
+\usepackage[T1]{fontenc}
+
+\usepackage{multicol}
+\usepackage[margin=1.5cm]{geometry}
+\let\oldemph\emph
+\renewcommand{\emph}[1]{\oldemph{\color{red!90!black}#1}}
+\newcommand{\diag}[1]{{\sffamily\bfseries\color{blue!80!white}$\langle\,$#1$\,\rangle$}}
+\newcommand{\nn}{{\color{dark}\ensuremath{\mathsf{n}}}}
+\newcommand{\Fig}{\footnotesize\textcolor{light}{Fig. }}
+
+% Colors
+% dark: rgb(28, 42, 63) = cmyk(56%, 33%, 0%, 75%)
+%\colorlet{red}[
+\definecolor{very dark}{cmyk}{0.56,0.331,0,0.75}
+\colorlet{dark}{blue!60!gray}
+
+\colorlet{light}[cmyk]{dark!70!white}
+\definecolor{tournament}{cmyk}{0.91,0,0.68,0.35}
+\definecolor{mypink}{cmyk}{0, 1, 0.629, 0}
+\colorlet{very light}[cmyk]{dark!30!white}
+\colorlet{bgcolor}[cmyk]{white}%{brown!10!white}
+\colorlet{red}[cmyk]{red}
+\colorlet{unav}[cmyk]{orange!80!red}
+\colorlet{green highlight}{green!80!red}
+\newcommand{\ang}{} % auxiliar macro
+\newcommand{\angtwo}{} % auxiliar macro
+\newcommand{\randrotate}{}
+\newcommand{\radius}{1.9}
+\begin{document}%\sffamily
+\pagecolor{bgcolor}
+\setlength{\columnsep}{3cm}
+\setlength{\parindent}{0em}
+\fontsize{32}{36}\selectfont
+\setlength{\parskip}{.7\parskip}
+
+
+{\sffamily\scshape\fontsize{70}{70}\selectfont {\color{unav}Inevitable} patterns}\hfill \raisebox{0ex}{T\'assio Naia\makebox[0cm][l]{ $\rightarrow$}\hspace*{6.2cm}}
+
+  \vspace{-.7cm}{\color{unav}{\rule{56cm}{2pt}}}
+
+  \vspace{.1cm}{\fontsize{35}{40}\selectfont\rmfamily \textit{in}\fontsize{50}{70}\selectfont\ \sffamily\scshape directed networks}\hfill \raisebox{.5ex}{{\color{light}joint work with} Richard Mycroft\hspace*{6.2cm}}
+  
+
+     
+  
+
+
+\bigskip
+
+
+\begin{multicols}{2}%
+\begin{center}
+  {\itshape\fontsize{40}{40}\selectfont
+    \emph{Directed networks}
+  }
+  
+
+\end{center}
+
+  \medskip
+
+  A natural model for
+  
+  \hspace*{1em}$\color{light}\hookrightarrow$ electricity, fuel and data distribution,
+  
+  \hspace*{1em}$\color{light}\hookrightarrow$ algorithm data flow,
+  
+  \hspace*{1em}$\color{light}\hookrightarrow$ process dependencies in manufacturing,
+
+  \hspace*{1em}$\color{light}\hookrightarrow$ preference systems in biology.
+  
+
+  \bigskip
+
+  A \textcolor{tournament}{tournament}
+is a network where each pair of \textcolor{dark}{vertices} 
+(i.e., \textcolor{dark}{nodes}) is connected by an arc.
+
+\begin{center}  
+  \begin{tikzpicture}
+    \coordinate (a) at (80:3cm);
+    \coordinate (b) at (-40:3cm);
+    \coordinate (c) at (200:3cm);
+    \coordinate (d) at (0,0)
+;
+
+
+    \begin{scope}[shorten >=.4cm,shorten <=.4cm,tournament]
+      \draw[lin,bend left] (a) to node [right] {\makebox[0pt][l]{\textcolor{light}{\reflectbox{$\rightsquigarrow$} arc}}} (b);
+      \draw[lin] (b) -- (d);
+      \draw[lin] (d) -- (a);
+      \draw[lin,bend left] (c) to (a);
+      \draw[lin,bend left] (b) to (c);
+      \draw[lin] (c) -- (d);
+    \end{scope}
+    \foreach \ll in {a,b,c} { \fill[dark] (\ll) circle (.3cm); }
+    \fill[dark] (d) circle (.3cm);
+
+  \end{tikzpicture}
+  %\diag{tournament $(\nn=4)$, define vertices}
+
+  \smallskip
+  
+  \Fig Tournament on $\nn=4$ vertices.
+\end{center}
+
+
+\medskip
+
+
+Brute-force analysis of tournaments is impractical,
+as the number of tournaments is exponential on \nn.
+
+\bigskip
+
+Despite this variety, it turns out that some
+patterns are common to all tournaments. 
+The first results in this direction date back to 1934.
+
+\vfill
+\columnbreak%
+\begin{center}
+{\itshape\fontsize{40}{40}\selectfont
+\emph{Unavoidability}
+}
+
+
+\end{center}
+
+\medskip
+
+A ``structure''  $\bigl(\,$e.g.:
+\begin{tikzpicture}
+  \coordinate (a) at (0,0);
+  \coordinate (b) at (1,.7);
+  \coordinate (c) at (2,0);
+  \coordinate (d) at (3,.7);
+
+  \draw[small lin shorten,unav] (a) -- (b);
+  \draw[small lin shorten,unav] (c) -- (b);
+  \draw[small lin shorten,unav] (c) -- (d);
+
+  \foreach \ll in {a,b,c,d} { \fill[dark] (\ll) circle (3pt); }
+\end{tikzpicture}$\,\bigr)$
+is called \emph{unavoidable}
+if it appears in every tournament
+(on the same number of vertices).
+
+\bigskip
+
+\emph{Directed cycles} $\Bigl($
+
+\begin{tikzpicture}[baseline={(0,-.5)},mypink]
+  \coordinate (a) at (170:.8cm);
+  \coordinate (b) at (50:.8cm);
+  \coordinate (c) at (-70:.8cm);
+
+
+  \draw[small lin shorten] (a) -- (b);
+  \draw[small lin shorten] (b) -- (c);
+  \draw[small lin shorten] (c) -- (a);
+
+  \foreach \ll in {a,b,c} { \fill[dark] (\ll) circle (3pt); }
+\end{tikzpicture} ,
+\begin{tikzpicture}[baseline={(0,-.5)},mypink]
+  \coordinate (a) at (160:.9cm);
+  \coordinate (b) at (70:.9cm);
+  \coordinate (c) at (-20:.9cm);
+  \coordinate (d) at (-110:.9cm);
+
+
+  \draw[small lin shorten] (a) -- (b);
+  \draw[small lin shorten] (b) -- (c);
+  \draw[small lin shorten] (c) -- (d);
+  \draw[small lin shorten] (d) -- (a);
+
+  \foreach \ll in {a,b,c,d} { \fill[dark] (\ll) circle (3pt); }
+\end{tikzpicture} , \ldots\ $\Bigr)$
+can be \emph{avoided}:
+
+\begin{center}
+\begin{tikzpicture}[baseline={(0,-.5)},tournament]
+  \coordinate (a) at (170:2.5cm);
+  \coordinate (b) at (50:2.5cm);
+  \coordinate (c) at (-70:2.5cm);
+
+
+  \draw[lin shorten] (a) -- (b);
+  \draw[lin shorten] (b) -- (c);
+  \draw[lin shorten] (a) -- (c);
+
+  \foreach \ll in {a,b,c} { \fill[dark] (\ll) circle (6pt); }
+\end{tikzpicture} ,
+\begin{tikzpicture}[baseline={(0,-.5)},tournament]
+  \coordinate (a) at (0,0);
+  \coordinate (b) at (3,0);
+  \coordinate (c) at (6,0);
+  \coordinate (d) at (9,0);
+
+  \draw[lin shorten] (a) -- (b);
+  \draw[lin shorten] (b) -- (c);
+  \draw[lin shorten] (c) -- (d);
+  \draw[lin shorten,bend right,out=-60,in=-120] (a) to (c);
+  \draw[lin shorten,bend left,out=60,in=120] (a) to (d);
+  \draw[lin shorten,bend left,out=45,in=135] (b) to (d);
+      
+  \foreach \ll in {a,b,c,d} { \fill[dark] (\ll) circle (6pt); }
+\end{tikzpicture} , $\cdots$
+
+\smallskip
+\Fig Avoiding directed cycles.
+\end{center}
+
+\bigskip
+
+
+What about structures without cycles?\newline
+\hspace*{\fill} They are called \emph{trees}.
+\newcommand{\join}[2]{\draw[lin shorten] (#1)--(#2);}
+
+\begin{center}
+  \begin{tikzpicture}
+    %% \draw[gray!30!white,very thin] (0,0) grid[step=1cm] (20,6);
+    %% \draw[gray!70!white,very thin] (0,0) grid[step=2cm] (20,6);
+      \coordinate (a1) at ($(0 +.6*rand,1 +.6*rand)$);
+      \coordinate (a2) at ($(1 +.6*rand,3 +.6*rand)$);
+      \coordinate (a3) at ($(2 +.6*rand,6 +.6*rand)$);
+
+      \coordinate (b1) at ($(4 +.6*rand,-1 +.6*rand)$);
+      \coordinate (b2) at ($(4 +.6*rand,4 +.6*rand)$);
+      
+      \coordinate (c1) at ($(8 +.6*rand,2 +.6*rand)$);
+      \coordinate (c2) at ($(7 +.6*rand,6 +.6*rand)$);
+
+      \coordinate (d1) at ($(10 +.6*rand,0 +.6*rand)$);
+
+      \coordinate (e1) at ($(13 +.6*rand,2 +.6*rand)$);
+      \coordinate (e2) at ($(12 +.6*rand,5 +.6*rand)$);
+
+      \coordinate (f1) at ($(15 +.6*rand,0 +.6*rand)$);
+
+      \coordinate (g1) at ($(16 +.6*rand,3 +.6*rand)$);
+
+      \coordinate (h1) at ($(18 +.6*rand,5 +.6*rand)$);
+      \foreach \ll in {a1,a2,a3,b1,b2,c1,c2,d1,e1,e2,f1,g1,h1} { \fill[dark] (\ll) circle (6pt); }
+
+      \join{a1}{b1}
+      \join{a2}{b2}
+      \join{b2}{a3}
+      \join{b2}{c2}
+      \join{b2}{c1}
+      \join{c1}{b1}
+      \join{c1}{e2}
+      \join{e2}{e1}
+      \join{d1}{e1}
+      \join{e1}{f1}
+      \join{g1}{e2}
+      \join{h1}{g1}
+    \end{tikzpicture}
+\end{center}
+\end{multicols}
+
+\bigskip
+
+\begin{center}
+
+
+  \vspace{-1.4cm}%
+  {\color{light}{\rule{\textwidth}{3pt}}}
+
+    \bigskip
+
+
+  \begin{tikzpicture}
+    \input{5v-alternating-2}
+  \end{tikzpicture}
+
+  \smallskip
+
+
+  {\color{light}\rule[.3ex]{32cm}{3pt}} \hfill\Fig The tree pattern
+  \begin{tikzpicture}[baseline={(0,0)}]
+    \coordinate (a1) at ($(2.5em,0) +(200:2.5em)$);
+    \coordinate (a2) at ($(2.5em,0) +(160:2.5em)$);
+    \coordinate (b)  at (2.5em,0em);
+    \coordinate (c)  at ($(b) +(20:2.5em)$);
+    \coordinate (d)  at ($(c) +(-40:2.5em)$);%(5em,1.3em);
+    \draw[small lin shorten,unav] (a1) -- (b);
+    \draw[small lin shorten,unav] (a2) -- (b);
+    \draw[small lin shorten,unav] (b) -- (c);
+    \draw[small lin shorten,unav] (c) -- (d);
+    \foreach \ll in {a1,a2,b,c,d} { \fill[dark] (\ll) circle (3pt);}
+    
+  \end{tikzpicture}\hfill
+  appears in every \textcolor{dark}{5}-vertex tournament. {\color{light}\rule[.5ex]{2em}{3pt}}
+  \bigskip
+
+  %\vspace{-1.4cm}%
+  %{\color{light}{\rule{\textwidth}{3pt}}}
+
+%%%%%%  %\vspace{-1.4cm}{\color{unav}{\rule{49cm}{2pt}}}
+
+\end{center}
+
+\medskip
+
+\begin{multicols}{2}
+\vfill
+\columnbreak%
+\begin{center}
+{\itshape\fontsize{40}{40}\selectfont
+\emph{Which trees are unavoidable\makebox[0em][l]{?}}
+}
+
+
+\end{center}
+
+\bigskip
+
+Only two known examples: \emph{paths} ($\nn\geq 8$) and \emph{claws}.
+
+\bigskip
+
+\begin{center}
+
+  \begin{tikzpicture}[baseline={(0,-6)}]
+    \coordinate (a) at (0,0);
+    \coordinate (b) at ($(a) + (0,-3)$);
+    \coordinate (c) at ($(b) + (0,-3)$);
+    \coordinate (d) at ($(c) + (0,-3)$);
+    \coordinate (e) at ($(d) + (0,-3)$);
+
+    \begin{scope}[unav]
+    \draw [lin shorten] (b) -- (a);
+    \draw [lin shorten] (b) -- (c);
+    \draw [lin shorten] (c) -- (d);
+    \end{scope}
+    \node at ($(d) +(0,-.5)$) {$\vdots$};
+    
+    \node[align=center] at ($(d)+(0,-2.5cm)$) {any arc\\ orientations};
+    
+    \foreach \letter in {a,b,c,d} {
+      \vertexat{(\letter)}
+    }
+
+  \end{tikzpicture}%
+   \hspace*{-0cm}and\quad
+  \begin{tikzpicture}[baseline={(0,-6)},unav]
+    \coordinate (x) at (0,0);
+    \coordinate (a) at (-150:3.5cm);
+    \coordinate (b) at (-110:3.5cm);
+    \coordinate (c) at ( -70:3.5cm);
+    \coordinate (d) at ( -30:3.5cm);
+
+    \coordinate (a1) at ($(a) + (0,-3)$);
+    \coordinate (b1) at ($(b) + (0,-3)$);
+    \coordinate (c1) at ($(c) + (0,-3)$);
+    \coordinate (d1) at ($(d) + (0,-3)$);
+
+    \coordinate (a2) at ($(a1) + (0,-3)$);
+    \coordinate (b2) at ($(b1) + (0,-3)$);
+    \coordinate (d2) at ($(d1) + (0,-3)$);
+
+    \coordinate (a3) at ($(a2) + (0,-3)$);
+    \coordinate (b3) at ($(b2) + (0,-3)$);
+    \coordinate (d3) at ($(d2) + (0,-3)$);
+
+    \coordinate (b4) at ($(b3) + (0,-3)$);
+    \coordinate (d4) at ($(d3) + (0,-3)$);
+
+    \foreach \letter in {a,b,c,d} {
+      \draw [lin shorten] (x) -- (\letter);
+      \draw [lin shorten]  (\letter) -- (\letter1);
+    }
+
+    \foreach \letter in {a,b,d} {
+      \draw [lin shorten]  (\letter1) -- (\letter2);
+    }
+
+    \foreach \letter in {a2,b2,c1,d2} {
+      \node at ($(\letter) +(0,-.5)$) {$\vdots$};
+    }
+
+    \foreach \letter in {x,a,a1,a2,b,b1,b2,c,c1,d,d1,d2} {
+      \vertexat{(\letter)}
+    }
+
+    \draw [gray,thick,decorate,decoration={brace,amplitude=.3cm}] ($(b2-|d)+(0,-1.1cm)$) -- node [black,below=.3cm] {$\displaystyle \leq \left(\frac{3}{8}+\frac{1}{200}\right)\nn$ branches} ($(b2-|a)+(0,-1.1cm)$);
+  \end{tikzpicture}%
+
+\end{center}
+
+
+\bigskip
+\newcommand{\yr}[1]{\,\raisebox{1ex}{\fontsize{28}{36}\selectfont\color{dark}\small(#1)}\negthinspace}
+
+{\fontsize{30}{36}\selectfont
+  The results above were obtained (in the case of paths)
+  by R\'edei\yr{1934}, Thomason\yr{1986}, Havet \& Thomass\'e\yr{2000},
+  and (for claws) by Saks \& S\'os\yr{1981} and Lu, Wang \& Wong\yr{1998}.}
+
+\bigskip
+
+\begin{center}
+{\itshape\fontsize{40}{40}\selectfont
+\emph{An approximate answer and a conjecture}
+}
+\end{center}
+
+\bigskip
+
+{\color{dark}\scshape Bender \& Wormald (1988)}\newline
+\hspace*{1em}$\color{light}\hookrightarrow$ \emph{Most} tournaments contain \emph{most} trees!
+
+\medskip
+
+\makebox{\phantom{\hspace*{1em}$\hookrightarrow$}} \hfill$\mathbb{P}\,(\,$random \textcolor{unav}{tree} in random \textcolor{tournament}{tournament}$\,)\to 1$
+
+\medskip
+
+\hspace*{1em}$\color{light}\hookrightarrow$ \textcolor{light}{Conjecture.} Are most trees unavoidable?
+
+\vfill\columnbreak
+
+\begin{center}
+{\itshape\fontsize{40}{40}\selectfont
+\emph{Our result}
+}
+\end{center}
+
+\newcommand{\hook}{\hspace*{1em}$\color{light}\hookrightarrow$ }
+\newcommand{\phantomhook}{\makebox{\phantom{\hook}}}
+
+{\color{dark}\scshape Mycroft, N. (2016$^+$)}\newline
+\hook Indeed, \emph{most trees are unavoidable!}
+
+\smallskip
+
+\phantomhook \quad$\mathbb{P}\,(\,$random \textcolor{unav}{tree} in \emph{every} \textcolor{tournament}{tournament}$\,)\to 1$ 
+
+\medskip
+
+\hook Obtain sufficient conditions for unavoidability.
+
+\medskip
+\hook Available on {\color{dark}\texttt{arxiv.org/abs/1609.03393}}.
+
+\medskip
+
+\begin{center}
+{\itshape\fontsize{40}{40}\selectfont
+\emph{Ingredients and method}
+}
+\end{center}
+
+Moon\yr{1968}\,: in a ``typical'' large tree
+ few arcs touch each vertex.
+\hfill(Maximum degree is sub-logarithmic.)
+
+\bigskip
+
+
+K\"uhn, Mycroft and Osthus\yr{2011} obtained structural characterization of large tournaments.
+
+\bigskip
+
+Mycroft, N.\yr{2016$^+$}\,
+
+\hook Most trees admit a good ``pruning''.
+
+\hook The pruned tree ``fits'' nicely in any tournament.
+(By means of a randomized algorithm, based on
+a sharpened version of the result above.)
+
+\hook We may then recover the pruned ends, to obtain a copy of the complete tree!
+
+
+\medskip
+
+\end{multicols}
+
+
+\begin{tikzpicture}[remember picture, overlay]
+  \clip ($(current page.north east) -(.5,2.5)$) -- +(0,1.5cm) arc (60:300:3.5cm) -- cycle;
+  \node[anchor=north east] (tn) at ($(current page.north east) +(.13,0)$) {\ldots me!};
+  
+\end{tikzpicture}
+
+
+
+\begin{minipage}{.6\textwidth}
+  \vfill
+  
+  \fontsize{16}{18}\selectfont
+  Richard Mycroft, \textcolor{dark}{\texttt{r.mycroft@bham.ac.uk}}. School of Mathematics, University of Birmingham, Birmingham, B15 2TT, United Kingdom. Research partially supported by EPSRC grant EP/M011771/1.
+
+  \medskip
+  
+T\'assio Naia \textcolor{dark}{\texttt{tnaia@member.fsf.org}}. School of Mathematics, University of Birmingham, Birmingham, B15 2TT, United Kingdom. Research supported by CNPq (201114/2004-3). \hfill \textcolor{dark}{\texttt{http://web.mat.bham.ac.uk/T.Naia/}}
+\end{minipage}
+\begin{minipage}{.38\textwidth}
+
+\begin{center}
+\raisebox{-1cm}{\includegraphics[width=5cm]{UoB_logo.jpg}}
+\quad\includegraphics[width=6cm]{logo-vetorizada_portugues.png}
+
+
+\end{center}
+\end{minipage}
+
+\end{document}
